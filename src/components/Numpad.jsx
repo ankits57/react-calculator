@@ -10,8 +10,17 @@ const Numpad = ({setText, text}) => {
   const handleChange = (val) => {
     setText(text+val);
   }
+  const evaluate = () => {
+    const ans = eval(text)
+    if(Number.isInteger(ans)) {
+      setText(ans, toString())
+    }
+    else{
+      setText(ans.toFixed(3).toString())
+    }
+  }
   return (
-    <div className='grid grid-cols-4 gap-3 text-4xl m-auto mt-10'>
+    <div className='grid grid-cols-4 gap-3 text-4xl m-auto mt-10 lg:h-screen lg:w-screen/2 lg:mt-1 lg:text-7xl lg:gap-20'>
         <button type="button" onClick={()=>setText('')}>AC</button>
         <button type="button" onClick={()=>setText(text.slice(0, text.length-1))}><MdBackspace className='m-auto'/></button>
         <button type="button" onClick={()=>handleChange('%')}><MdPercent className='m-auto'/></button>
@@ -31,7 +40,7 @@ const Numpad = ({setText, text}) => {
         <button type="button" className='mt-8'></button>
         <button type="button" onClick={()=>handleChange('0')} className='mt-8'>0</button>
         <button type="button" onClick={()=>handleChange('.')} className='mt-8'><BsDot className='m-auto'/></button>
-        <button type="button" onClick={()=>setText(eval(text).toFixed(3).toString())} className='mt-8'><FaEquals className='m-auto'/></button>
+        <button type="button" onClick={evaluate} className='mt-8'><FaEquals className='m-auto'/></button>
     </div>
   )
 }

@@ -3,12 +3,15 @@ import Numpad from "./components/Numpad"
 import { useState } from "react"
 
 function App() {
-const [text, setText] = useState('132+3')
+const [text, setText] = useState('')
 
   return (
     <>
-      <Display text ={text}/>
+    <div className="lg:grid grid-cols-2">
+      <Display text ={text} />
       <Numpad setText={setText} text={text}/>
+    </div>
+      
     </>
   )
 }
